@@ -1,0 +1,14 @@
+// vite.config.ts
+import solid from "file:///Users/vlad/node/book-a-table/node_modules/.pnpm/solid-start@0.2.26_nso42byjctgcpyvivcyi5mea2y/node_modules/solid-start/vite/plugin.js";
+import { defineConfig } from "file:///Users/vlad/node/book-a-table/node_modules/.pnpm/vite@4.3.5_5tgvkgc5alnw62aykujfkn2him/node_modules/vite/dist/node/index.js";
+var MINIFY = process.env.NODE_ENV === "production";
+var vite_config_default = defineConfig({
+  build: {
+    minify: MINIFY
+  },
+  plugins: [solid()]
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvVXNlcnMvdmxhZC9ub2RlL2Jvb2stYS10YWJsZVwiO2NvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9maWxlbmFtZSA9IFwiL1VzZXJzL3ZsYWQvbm9kZS9ib29rLWEtdGFibGUvdml0ZS5jb25maWcudHNcIjtjb25zdCBfX3ZpdGVfaW5qZWN0ZWRfb3JpZ2luYWxfaW1wb3J0X21ldGFfdXJsID0gXCJmaWxlOi8vL1VzZXJzL3ZsYWQvbm9kZS9ib29rLWEtdGFibGUvdml0ZS5jb25maWcudHNcIjtpbXBvcnQgc29saWQgZnJvbSBcInNvbGlkLXN0YXJ0L3ZpdGVcIjtcbmltcG9ydCB7IGRlZmluZUNvbmZpZyB9IGZyb20gXCJ2aXRlXCI7XG5cbmNvbnN0IE1JTklGWSA9IHByb2Nlc3MuZW52Lk5PREVfRU5WID09PSAncHJvZHVjdGlvbic7XG5cbmV4cG9ydCBkZWZhdWx0IGRlZmluZUNvbmZpZyh7XG4gIGJ1aWxkOiB7XG4gICAgbWluaWZ5OiBNSU5JRllcbiAgfSxcbiAgcGx1Z2luczogW3NvbGlkKCldLFxufSk7XG4iXSwKICAibWFwcGluZ3MiOiAiO0FBQXlRLE9BQU8sV0FBVztBQUMzUixTQUFTLG9CQUFvQjtBQUU3QixJQUFNLFNBQVMsUUFBUSxJQUFJLGFBQWE7QUFFeEMsSUFBTyxzQkFBUSxhQUFhO0FBQUEsRUFDMUIsT0FBTztBQUFBLElBQ0wsUUFBUTtBQUFBLEVBQ1Y7QUFBQSxFQUNBLFNBQVMsQ0FBQyxNQUFNLENBQUM7QUFDbkIsQ0FBQzsiLAogICJuYW1lcyI6IFtdCn0K
