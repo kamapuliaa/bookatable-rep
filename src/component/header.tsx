@@ -1,7 +1,7 @@
 import classnames from 'classnames';
 import style from './header.module.scss';
 
-export function Header() {
+export default function Header() {
   return (
   <>
     <div class={ style['header'] }>

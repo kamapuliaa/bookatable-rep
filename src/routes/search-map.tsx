@@ -1,12 +1,14 @@
-import { Header } from "~/component/header";
+import Header from "~/component/header";
+import Footer from "~/component/footer";
 import style from './search-map.module.scss';
 import 'leaflet/dist/leaflet.css';
 import classNames from "classnames";
 import { MapProvider } from "~/context/map";
 import { createEffect, createResource, createSignal, For, Suspense } from "solid-js";
-import Point, { PointType } from "~/component/point";
 import { createStore, type Store } from "solid-js/store";
 import { useLocation } from "solid-start";
+import Point, { PointType } from "~/component/point";
+import FilterList from "~/component/filter-list";
 
 type FilterType = {
   city: string;
@@ -64,18 +66,21 @@ export default function SearchMap() {
         lng: 17.1148649792775,
         filters: ['something', 'vegan'],
         cuisines: ['italian', 'slovak'],
+        icons: ['https://cdn-icons-png.flaticon.com/512/384/384993.png'],
       }
     ].filter((p) => filterPoint(p, filter)) satisfies PointType[];
     return result;
   });
   const [fullFilter] = createResource(async () => {
+    console.log('fetch full filter');
     return {
-      filters: ['Something', 'Vegan', 'Pets allowed', 'Smoking allowed', 'Non-smoking', 'Outdoor seating', 'Indoor seating', 'Takeaway', 'Delivery'],
-      cuisines: ['Italian', 'Slovak', 'Asian', 'American', 'Mexican', 'Indian', 'French', 'Greek', 'Spanish', 'Thai', 'Japanese', 'Chinese', 'Vietnamese', 'Korean', 'Turkish', 'Lebanese', 'Mediterranean', 'Vegetarian', 'Vegan', 'Gluten-free', 'Halal', 'Kosher', 'Pizza', 'Burgers', 'Sushi', 'Steak', 'Seafood', 'Desserts', 'Coffee', 'Drinks', 'Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Late night'],
+      filters: ['Something', 'Vegan', 'Pets allowed'],
+      cuisines: ['Ukrainian', 'Italian', 'Slovak', 'Asian'],
+      // filters: ['Something', 'Vegan', 'Pets allowed', 'Smoking allowed', 'Non-smoking', 'Outdoor seating', 'Indoor seating', 'Takeaway', 'Delivery'],
+      // cuisines: ['Ukrainian', 'Italian', 'Slovak', 'Asian', 'American', 'Mexican', 'Indian', 'French', 'Greek', 'Spanish', 'Thai', 'Japanese', 'Chinese', 'Vietnamese', 'Korean', 'Turkish', 'Lebanese', 'Mediterranean', 'Vegetarian', 'Vegan', 'Gluten-free', 'Halal', 'Kosher', 'Pizza', 'Burgers', 'Sushi', 'Steak', 'Seafood', 'Desserts', 'Coffee', 'Drinks', 'Breakfast', 'Brunch', 'Lunch', 'Dinner', 'Late night'],
     }
   });
   const [isOpenFilter, setIsOpenFilter] = createSignal<boolean>(false);
-  const [isOpenCuisines, setIsOpenCuisines] = createSignal<boolean>(false);
   return (
     <>
     <Header></Header>
@@ -126,78 +131,20 @@ export default function SearchMap() {
       </div>
       <div class={ style['map-container'] }>
         <div class={ style['map-container__filter'] }>
+          <FilterList name="Filters" items={fullFilter()?.filters} onChange={(item, value) => setFilter('filters', item, value)}></FilterList>
+          <FilterList name="Cuisine" items={fullFilter()?.cuisines} onChange={(item, value) => setFilter('cuisines', item, value)}></FilterList>
           <div class={ style['map-container__filter__block'] }>
-            <div class={ style['map-container__filter__block__title'] }>
-              Filters
-            </div>
-            <div class={ style['map-container__filter__block__content'] }>
-              <For each={ fullFilter()?.filters.slice(0, isOpenFilter() ? -1 : 4) }>
-                { (item) => {
-                  const idName = toId(item);
-                  return (
-                    <div class={ classNames(style['map-container__filter__block__content__item']) }>
-                      <input
-                        type="checkbox"
-                        name={ idName }
-                        class={ style['check'] }
-                        id={ idName }
-                        onchange={() => {
-                          setFilter('filters', idName, (c) => !c);
-                        }}
-                      />
-                      <label for={ idName } class={ style['label'] }>
-                        <svg width="30" height="30" viewbox="0 0 100 100">
-                          <rect x="30" y="20" width="50" height="50" stroke="black" fill="none" stroke-width="3px" />
-                          <g transform="translate(0,-952.36222)">
-                            <path d="m 56,963 c -102,122 6,9 7,9 17,-5 -66,69 -38,52 122,-77 -7,14 18,4 29,-11 45,-43 23,-4 " stroke="black" stroke-width="2" fill="none" class={style['path1']} />
-                          </g>
-                        </svg>
-                        <span>{ item }</span>
-                      </label>
-                      {/* <label for={ idName }>{ item }</label> */}
-                    </div>
-                  )
-                }}
-              </For>
-              {/* { isOpenFilter() ? <button onclick={[setIsOpenFilter, false]}>Less</button> : <button onclick={[setIsOpenFilter, true]}>More</button>} */}
-            </div>
-          </div>
-          <div class={ style['map-container__filter__block'] }>
-            <div class={ style['map-container__filter__block__title'] }>
-              Cuisine
-            </div>
-            
-            <div class={ style['map-container__filter__block__content'] }>
-              <For each={ fullFilter()?.cuisines.slice(0, isOpenCuisines() ? -1 : 4) }>
-                { (item) => {
-                  const idName = toId(item);
-                  return (
-                    <div class={ style['map-container__filter__block__content__item'] }>
-                      <input
-                        type="checkbox"
-                        name={ idName }
-                        id={ idName }
-                        onchange={() => setFilter('cuisines', idName, (c) => !c)}
-                      />
-                      <label for={ idName }>{ item }</label>
-                    </div>
-                  )
-                }}
-              </For>
-              { isOpenCuisines() ? <button onclick={[setIsOpenCuisines, false]}>Less</button> : <button onclick={[setIsOpenCuisines, true]}>More</button>}
-            </div>
-          </div><div class={ style['map-container__filter__block'] }>
             <div class={ style['map-container__filter__block__title'] }>
               Average cost
             </div>
             <div class={ style['map-container__filter__block__content'] }>
               <div class={ classNames(style['map-container__filter__block__content__item'], style['cost']) }>
                 <label for="cost_from">from</label>
-                <input type="text" name="cost_from" id="cost_from" />
+                <input type="number" name="cost_from" id="cost_from" />
               </div>
               <div class={ classNames(style['map-container__filter__block__content__item'], style['cost']) }>
                 <label for="cost_to">to</label>
-                <input type="text" name="cost_to" id="cost_to" />
+                <input type="number" name="cost_to" id="cost_to" />
               </div>
             </div>
           </div>
@@ -215,6 +162,7 @@ export default function SearchMap() {
         </div>
       </div>
     </main>
+    <Footer></Footer>
     </>
   );
 }
