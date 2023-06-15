@@ -1,0 +1,143 @@
+.bg-modal {
+	background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-contents {
+	height: 300px;
+	width: 500px;
+	background-color: #8C8080;
+	color: #fff;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+}
+.preorder {
+	background-color: #655E7A;
+}
+
+.close {
+	position: absolute;
+	color: #fff;
+  border: none;
+  background-color: transparent;
+	top: 0;
+	right: 10px;
+  padding: 6px;
+	font-size: 32px;
+	cursor: pointer;
+	&:hover {
+		color: #666;
+	}
+}
+
+.category-item {
+	font-size: 18px;
+	background-color: transparent;
+	border: none;
+	color: #fff;
+	cursor: pointer;
+
+	&:hover {
+		color: #666;
+	}
+}
+
+.menu-list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 20px;
+}
+
+.menu-item {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	width: 91%;
+	height: 70px;
+
+	&-image {
+		// margin-inline: 10px;
+		width: 120px;
+		height: 70px;
+		background-color: #fff;
+	}
+
+	&-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		text-align: left;
+		width: 50%;
+
+		&-title {
+			display: flex;
+			flex-direction: row;
+			margin: 0;
+			justify-content: space-between;
+			width: 100%;
+			margin-bottom: 5px;
+			font-size: 18px;
+			&-name {
+				margin: 0;
+			}
+			&-price {
+				margin: 0;
+			}
+		}
+		&-description {
+			margin: 0;
+		}
+	}
+}
+
+.menu-item-action {
+	border: none;
+	background-color: #fff8;
+	border-radius: 30px;
+	display: flex;
+	&-quantity {
+		font-size: 20px;
+		align-items: center;
+		width: 12px;
+		justify-content: center;
+		display: inherit;
+		color: #000;
+	}
+	&-button {
+		background-color: transparent;
+		border: none;
+		font-size: 24px;
+		cursor: pointer;
+		width: 25px;
+		&:hover {
+			color: #666;
+		}
+	}
+}
+
+.menu-total {
+	position: absolute;
+	right: 0;
+	margin-right: 32px;
+	margin-top: 40px;
+	font-size: 32px;
+	
+	&-title {
+		font-size: 20px;
+	}
+	&-price {
+		font-size: 20px;
+	}
+}

@@ -1,0 +1,158 @@
+.main {
+  margin: 0;
+  padding-block: 60px;
+  // padding-inline: 60px;
+  width: 100%;
+  background-color: #fff;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.title_btn {
+  background-color: #71AD4C;
+  color: #fff;
+  border: 1px solid transparent;
+  width: 200px;
+  height: 40px;
+  margin-inline: auto;
+  border-radius: 6px;
+  padding-block: 6px;
+  padding-inline: 35px;
+  font-size: 16px;
+  font-weight: 400;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #5e8f3c;
+    border: 1px solid #303c27
+  }
+}
+
+.list {
+  .item {
+    margin-top: 28px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 50%;
+    margin-inline: auto;
+
+    &_info {
+      width: 30%;
+      display: flex;
+      flex-direction: row;
+
+      &_position {
+        font-size: 16px;
+        margin-right: 12px;
+      }
+      &_details {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        &_name {
+          font-size: 16px;
+          font-weight: 400;
+        }
+        &_description {
+          font-size: 14px;
+          font-weight: 400;
+        }
+      }
+    }
+
+    &_img {
+      width: 30%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      &_photo {
+        align-self: center;
+        min-width: 100px;
+        height: 100px;
+        background-color: #9c4040;
+        background-size: 100px 100px;
+        &:active {
+          border: 1px solid;
+        }
+      }
+      .image_input {
+        opacity: 0;
+        top: 100%;
+        transition: 0.3s;
+        visibility: hidden;
+        position: absolute;
+        z-index: 10;
+      }
+      &:hover .image_input {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+
+    &_price {
+      font-size: 16px;
+      font-weight: 400;
+    }
+
+    &_actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      &_btn {
+        color: white;
+        border-radius: 6px;
+        border: none;
+        padding-block: 6px;
+        padding-inline: 35px;
+
+        font-size: 16px;
+        font-weight: 400;
+        cursor: pointer;
+        border: 1px solid transparent;
+        transition: 0.3s;
+
+        &:hover {
+          border: 1px solid #303c27
+        }
+      }
+    }
+  }
+}
+
+.edit {
+  background-color: #CDD47B;
+  &:hover {
+    background-color: #949b54;
+  }
+  &:disabled {
+    background-color: #acad9c;
+    cursor: not-allowed;
+  }
+}
+
+.delete {
+  background-color: #D6A8A8;
+  &:hover {
+    background-color: #976767;
+  }
+}
+
+.disable {
+  background-color: #7BCFD4;
+  &:hover {
+    background-color: #4a969a;
+  }
+}
+
+.enable {
+  background-color: #7BCFD4;
+  &:hover {
+    background-color: #4a969a;
+  }
+}

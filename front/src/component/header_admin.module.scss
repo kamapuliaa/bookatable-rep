@@ -1,0 +1,46 @@
+.header {
+  font-family: 'Comfortaa';
+  height: 45px;
+  // border-color: red;
+  // border-style: solid;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-block: 5px;
+  padding-inline: 30px;
+
+  & .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+  }
+}
+
+.link {
+  color: #000;
+  text-decoration: none;
+}
+
+.account {
+  background: #EB5757;
+  border-radius: 6px;
+  height: 30px;
+  width: 80px;
+  color: white;
+  border: none;
+
+  &:hover {
+    background: #EB5757B2;
+  }
+}
+
+.navigation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  font-size: 24px;
+  font-weight: 3Я00;
+  margin-inline: auto;
+}

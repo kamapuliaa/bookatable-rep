@@ -1,0 +1,161 @@
+type WorkingHour {
+  MON: [Time!]
+  TUE: [Time!]
+  WED: [Time!]
+  THU: [Time!]
+  FRI: [Time!]
+  SAT: [Time!]
+  SUN: [Time!]
+}
+
+enum DishStatus {
+  AVAILABLE
+  NOT_AVAILABLE
+}
+
+type Dish {
+  id: ID!
+  name: String!
+  description: String!
+  category: String!
+  price: Float!
+  photo: String
+  status: DishStatus!
+  order: Int!
+}
+
+type Position {
+  id: ID!
+  settings: String!
+}
+
+type Restaurant {
+  id: ID!
+  name: String!
+  dishes: [Dish!]
+  bio: String!
+  lat: Float!
+  lng: Float!
+  filters: [String!]
+  cuisines: [String!]
+  address: String!
+  photos: [String!]
+  workingHours: WorkingHour!
+  avgPrice: Float!
+  positions: [Position!]
+  phone: String!
+}
+
+type User {
+  id: ID!
+  email: String!
+  name: String!
+  phone: String!
+  photo: String
+  restaurantId: ID
+  restaurant: Restaurant
+  # password: String!
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type PreOrder {
+  id: ID!
+  dishId: ID!
+  dish: Dish
+  quantity: Int!
+  description: String
+}
+
+type Booking {
+  id: ID!
+  restaurantId: ID!
+  restaurant: Restaurant
+  userId: ID!
+  user: User
+  dateFrom: DateTime!
+  dateTo: DateTime!
+  place: String!
+  name: String!
+  phone: String!
+  preOrder: [PreOrder!]
+  comment: String
+}
+
+input RestaurantFilter {
+  id: [ID!]
+  name: String
+  description: String
+  address: String
+  workingHours_from: String
+  workingHours_to: String
+  avgPrice_from: Float
+  avgPrice_to: Float
+}
+
+input BookingFilter {
+  id: ID
+  restaurantId: ID
+  userId: ID
+  date: String
+  time: String
+  createdAt: String
+  updatedAt: String
+}
+
+type RestaurantQuery {
+  restaurants(filter: RestaurantFilter): [Restaurant!]
+  restaurant(id: ID!): Restaurant
+}
+
+type AccountQuery {
+  me: User
+}
+
+type BookingQuery {
+  activeBookings(filter: BookingFilter): [Booking!]
+  historyBookings(filter: BookingFilter): [Booking!]
+}
+
+type Query {
+  restaurant: RestaurantQuery
+  account: AccountQuery
+  booking: BookingQuery
+}
+
+type AuthMutation {
+  login(email: String!, password: String!): AuthPayload
+  logout: Boolean
+  signup(email: String!, password: String!, name: String!, phone: String!): AuthPayload
+}
+
+type MeMutation {
+  updateProfile(name: String, phone: String, photo: String, password: String): AuthPayload
+}
+
+input OrderInput {
+  dishId: ID!
+  quantity: Int!
+  description: String
+}
+
+type BookingMutation {
+  createBooking(restaurantId: ID!, date_time_from: DateTime!, date_time_to: DateTime, place: String!, phone: String, name: String, preOrder: [OrderInput!]): Booking
+  deleteBooking(id: ID!): Booking
+}
+
+type DishMutation {
+  createDish(name: String!, description: String!, category: String!, price: Float!, photo: String, order: Int!): Dish
+  updateDish(id: ID!, name: String, description: String, category: String, price: Float, photo: String, status: DishStatus, order: Int): Dish
+  deleteDish(id: ID!): Dish
+}
+
+type Mutation {
+  auth: AuthMutation
+  me: MeMutation
+  booking: BookingMutation
+  dish: DishMutation
+}

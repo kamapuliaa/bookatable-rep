@@ -1,0 +1,137 @@
+.main {
+  margin: 0;
+  padding-block: 60px;
+  width: 100%;
+}
+
+.book {
+  background: white;
+  display: flex;
+  flex-direction: row;
+
+  &__left {
+    padding-top: 12px;
+    margin-inline: 36px;
+    width: 50%;
+
+    .wrapcanvas {
+      width: 100%;
+    }
+
+    &__btn {
+      margin-block: 30px;
+      display: flex;
+      &__menu {
+        margin-inline: auto;
+        background-color: #57B0CD;
+        color: white;
+        border-radius: 6px;
+        border: none;
+        padding-block: 12px;
+        padding-inline: 40px;
+
+        font-size: 20px;
+        line-height: 29px;
+        font-weight: 400;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #4d8da2;
+        }
+        &:disabled {
+          opacity: 0.6;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+
+  &__right {
+    padding-left: 76px;
+    background-color: #F8D8D84D;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding-bottom: 24px;
+
+    &__title {
+      margin-top: 60px;
+      font-size: 32px;
+      line-height: 39px;
+      font-weight: 300;
+    }
+
+    &__user_data {
+      // margin-top: 24px;
+      font-size: 24px;
+      line-height: 29px;
+      font-weight: 300;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    &__comment {
+      font-size: 24px;
+      line-height: 29px;
+      font-weight: 300;
+    }
+
+    &__btn {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding-right: 120px;
+
+      &__pre {
+        background-color: #8D4A4A;
+        color: white;
+        border-radius: 6px;
+        border: none;
+        padding-block: 12px;
+        padding-inline: 24px;
+
+        font-size: 20px;
+        line-height: 29px;
+        font-weight: 400;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #784242;
+        }
+        &:disabled {
+          background-color: #B3B3B3;
+          cursor: not-allowed;
+        }
+      }
+
+      &__confirm {
+        background-color: #607720;
+        color: white;
+        border-radius: 6px;
+        border: none;
+        padding-block: 12px;
+        padding-inline: 24px;
+
+        font-size: 20px;
+        line-height: 29px;
+        font-weight: 400;
+        cursor: pointer;
+
+        &:hover {
+          background-color: #516220;
+        }
+        &:disabled {
+          background-color: #B3B3B3;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+.canvas {
+  height: 500px;
+  width: 500px;
+}

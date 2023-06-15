@@ -1,0 +1,22 @@
+version: '3'
+services:
+    postgres:
+        image: postgis/postgis:15-3.3
+        ports:
+            - "4105:5432"
+        volumes:
+            - ./postgres:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_DB=bookatable
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_HOST_AUTH_METHOD=trust
+            - ALLOW_IP_RANGE=0.0.0.0/0
+        restart: on-failure
+        networks:
+            - db
+networks:
+    smtp:
+        external: true
+    back:
+    db:
